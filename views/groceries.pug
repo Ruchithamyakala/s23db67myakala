@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1= title
+  -
+    let results = [
+      {
+        "groceries_name": "chicken",
+        "groceries_quantity": "4 lbs",
+        "groceries_cost": 100
+      },
+      {
+        "groceries_name": "Carrots",
+        "groceries_quantity": "1.5 lbs",
+        "groceries_cost": 200
+      },
+      {
+        "groceries_name": "Cheese",
+        "groceries_quantity": "9 oz",
+        "groceries_cost": 300
+      },                   
+    ]
+  div(class= "container-fluid")
+    div(class = "row")
+      each item,index in results
+        div(class= "col-sm-2", onclick=`buy(${index})`) Name: #{item.groceries_name}
+        div(class= "col-sm-2", onclick=`buy(${index})`) Quantity: #{item.groceries_quantity}
+        div(class= "col-sm-2", onclick=`buy(${index})`) Cost: #{item.groceries_cost}
+        br
+        br
+        
+  script.
+    function buy(itemNum){
+      alert(`You purchased item ${itemNum+1}`)
+    }
