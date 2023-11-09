@@ -24,7 +24,7 @@ block content
     div(class = "row")
       each item,index in results
         div(class= "col-sm-2", onclick=`buy(${index})`) Name: #{item.groceries_name}
-        div(class= "col-sm-2", onclick=`buy(${index})`) Quantity: #{item.groceries_quantity}
+        div(class= "col-sm-2", onclick=`buy(${index})`) quantity: #{item.groceries_quantity}
         div(class= "col-sm-2", onclick=`buy(${index})`) Cost: #{item.groceries_cost}
         br
         br

@@ -2,7 +2,8 @@ extends layout
 
 block content
   h1= title
-  p Welcome to nwmsu 
+  p Welcome to #{title}
+  p Myakala Ruchitha
   button(type="button", class="btn btn-warning", onclick="goFaster()") Press Me
   div#faster Increase the speed
   script.
@@ -14,3 +15,4 @@ block content
       change += 1;
       document.getElementById("faster").textContent = "MPH " + mph + " with change " + change;
     }
+  a(href="/groceries") view groceries
