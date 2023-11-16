@@ -1,0 +1,53 @@
+block content
+  h1= title
+
+  - let groceriesid = toShow._id
+  - let groceries_name = toShow.groceries_name
+  - let groceries_quantity = toShow.groceries_quantity
+  - let groceries_cost = toShow.groceries_cost
+
+  div.row.mb-2
+    div.col-12.ml-1
+      h5.groceriesAttr ID is:
+      p #{groceriesid}
+
+  - let actionid = "/resource/groceries/" + groceriesid
+  form(id='groceriesForm', action=actionid, method="PUT")
+    div.form-group.row
+      label.col-sm-2.col-form-label(for='groceries_name') Groceries Name
+      div.col-sm-10
+        input#groceries_name.form-control(type='text', name='groceries_name', value=groceries_name)
+
+    div.form-group.row
+      label.col-sm-2.col-form-label(for='groceries_quantity') Groceries Quantity
+      div.col-sm-10
+        input#groceries_quantity.form-control(type='text', name='groceries_quantity', value=groceries_quantity)
+
+    div.form-group.row
+      label.col-sm-2.col-form-label(for='groceries_cost') Groceries Cost
+      div.col-sm-10
+        input#groceries_cost.form-control(type='number', name='groceries_cost', value=groceries_cost)
+
+    div.form-group.row
+      div.col-sm-10.offset-sm-2
+        input.btn.btn-primary(type="submit", value="Update")
+
+  script.
+    document.forms['groceriesForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO: Add user feedback for form submission (e.g., disable the submit button, show loading spinner)
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target))
+      })
+      .then((resp) => resp.json())
+      .then((body) => {
+        // TODO: Handle the server response (e.g., redirect, display success message)
+        alert("Update succeeded");
+        // TODO: Additional handling of the response body
+      })
+      .catch((error) => {
+        // TODO: Handle the error (e.g., display error message, log to console)
+        alert("Update failed: " + error);
+      });
+    });

@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= title
+
+  - let groceriesid = toShow._id
+  - let groceries_name = toShow.groceries_name
+  - let groceries_quantity = toShow.groceries_quantity
+  - let groceries_cost = toShow.groceries_cost
+
+  div.container
+    div.row.mb-3
+      div.col-12
+        span.font-weight-bold.groceriesAttr groceries ID is:
+        span #{groceriesid}
+    div.row.mb-3
+      div.col-12
+        span.font-weight-bold.groceriesAttr groceries name is:
+        span #{groceries_name}
+    div.row.mb-3
+      div.col-12
+        span.font-weight-bold.groceriesAttr groceries quantity is:
+        span #{groceries_quantity}
+    div.row.mb-3
+      div.col-12
+        span.font-weight-bold.groceriesAttr groceries Cost is:
+        span #{groceries_cost}

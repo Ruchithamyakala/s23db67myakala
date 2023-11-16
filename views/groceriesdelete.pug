@@ -1,0 +1,57 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let groceriesid = toShow._id
+    - let groceries_name = toShow.groceries_name
+    - let groceries_quantity = toShow.groceries_quantity
+    - let groceries_cost = toShow.groceries_cost
+    - let actionid = "/resource/groceries/" + groceriesid
+
+    script.
+      let actionid = "#{actionid}"
+
+    div
+      div.row
+        div(class='groceriesAttr mr-3') groceries ID is:
+        div #{groceriesid}
+      div.row
+        div(class='groceriesAttr mr-3') groceries name is:
+        div #{groceries_name}
+      div.row
+        div(class='groceriesAttr mr-3') groceries quantity is:
+        div #{groceries_quantity}
+      div.row
+        div(class='groceriesAttr mr-3') groceries cost is:
+        div #{groceries_cost}
+
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+    script.
+      function cancel() {
+        // Go back to the home page for the groceries collection
+        window.location.href='/groceries'
+      }
+
+    script.
+      function deleteOnid() {
+        console.log("starting delete")
+        // delete first
+        fetch(actionid, {
+          method: 'DELETE' // Don't need a body for the delete
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Delete succeeded")
+          window.location.href='/groceriess'
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Delete failed " + error )
+        });
+      }
